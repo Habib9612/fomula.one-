@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
 import { Eye, EyeOff, Mail, Lock, User, Sparkles } from "lucide-react"
+import { useAuth } from "@/lib/auth-context"
 
 interface LoginModalProps {
   isOpen: boolean
@@ -21,6 +22,9 @@ export function LoginModal({ isOpen, onClose, onSuccess }: LoginModalProps) {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("login")
+  const [error, setError] = useState<string | null>(null)
+  
+  const { login, register } = useAuth()
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -37,42 +41,38 @@ export function LoginModal({ isOpen, onClose, onSuccess }: LoginModalProps) {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError(null)
 
-    // Simulate API call
-    setTimeout(() => {
-      const mockUser = {
-        id: "1",
-        name: loginForm.email.split("@")[0],
-        email: loginForm.email,
-        avatar: null,
-      }
-      onSuccess(mockUser)
-      setIsLoading(false)
+    try {
+      await login(loginForm.email, loginForm.password)
+      onSuccess({ email: loginForm.email })
       onClose()
-    }, 1000)
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Login failed')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     if (signupForm.password !== signupForm.confirmPassword) {
-      alert("Passwords don't match")
+      setError("Passwords don't match")
       return
     }
 
     setIsLoading(true)
+    setError(null)
 
-    // Simulate API call
-    setTimeout(() => {
-      const mockUser = {
-        id: "1",
-        name: signupForm.name,
-        email: signupForm.email,
-        avatar: null,
-      }
-      onSuccess(mockUser)
-      setIsLoading(false)
+    try {
+      await register(signupForm.name, signupForm.email, signupForm.password)
+      onSuccess({ email: signupForm.email, name: signupForm.name })
       onClose()
-    }, 1000)
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Registration failed')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleSocialLogin = (provider: string) => {

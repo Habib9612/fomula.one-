@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// Mock user database - replace with actual database
-const users = [
-  {
-    id: 1,
-    email: 'demo@formula.one',
-    password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-    name: 'Demo User',
-    role: 'user'
-  }
-];
+import { db } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,7 +15,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user by email
-    const user = users.find(u => u.email === email);
+    const user = await db.user.findUnique({
+      where: { email }
+    });
     if (!user) {
       return NextResponse.json(
         { error: 'Invalid credentials' },

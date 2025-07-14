@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -16,6 +16,7 @@ import { HealthProfile } from "@/components/health-profile"
 import { FormulaEvolution } from "@/components/formula-evolution"
 import { FormulaCommunity } from "@/components/formula-community"
 import { Enhanced3DPreview } from "@/components/enhanced-3d-preview"
+import { productsApi, formulasApi } from "@/lib/api"
 
 interface Ingredient {
   id: string

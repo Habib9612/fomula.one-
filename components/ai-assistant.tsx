@@ -5,7 +5,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Bot, User, Zap } from "lucide-react"
+import { Bot, User, Zap, Plus, ArrowRight } from "lucide-react"
+import { Input } from "@/components/ui/input"
 
 interface AIAssistantProps {
   isOpen: boolean
@@ -217,4 +218,45 @@ export function AIAssistant({ isOpen, onClose, onSuggestIngredients, productType
         {messages.length === 1 && (
           <div className="border-t pt-4">
             <p className="text-sm font-medium text-stone-700 mb-3">Quick suggestions:</p>
-            <div className="grid grid-cols-2 \
+            <div className="grid grid-cols-2 gap-2">
+              {quickSuggestions.map((suggestion, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="sm"
+                  className="h-auto p-3 text-left justify-start"
+                  onClick={() => handleQuickSuggestion(suggestion)}
+                >
+                  <div className="flex items-center space-x-2">
+                    {typeof suggestion.icon === 'string' ? (
+                      <span className="text-lg">{suggestion.icon}</span>
+                    ) : (
+                      <suggestion.icon className="w-4 h-4" />
+                    )}
+                    <span className="text-xs">{suggestion.text}</span>
+                  </div>
+                </Button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Input Section */}
+        <div className="border-t pt-4">
+          <div className="flex space-x-2">
+            <Input
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Ask me anything about your health goals..."
+              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              className="flex-1"
+            />
+            <Button onClick={handleSend} disabled={!inputValue.trim() || isTyping}>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}

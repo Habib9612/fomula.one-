@@ -1,17 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// Mock user database - replace with actual database
-let users = [
-  {
-    id: 1,
-    email: 'demo@formula.one',
-    password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-    name: 'Demo User',
-    role: 'user'
-  }
-];
+import { db } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,7 +15,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user already exists
-    const existingUser = users.find(u => u.email === email);
+    const existingUser = await db.user.findUnique({
+      where: { email }
+    });
     if (existingUser) {
       return NextResponse.json(
         { error: 'User already exists with this email' },
@@ -37,15 +29,14 @@ export async function POST(request: NextRequest) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const newUser = {
-      id: users.length + 1,
-      email,
-      password: hashedPassword,
-      name,
-      role: 'user'
-    };
-
-    users.push(newUser);
+    const newUser = await db.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        name,
+        role: 'user'
+      }
+    });
 
     // Generate JWT token
     const token = jwt.sign(
