@@ -1,10 +1,13 @@
-# Formula One Dashboard 🏎️
+# Formula One Wellness Platform 🌿
 
-A modern Formula One data dashboard built with Next.js, TypeScript, and modern web technologies.
+A modern wellness platform for creating personalized health products built with Next.js, TypeScript, and modern web technologies.
 
-## 🚀 Features
+## 🌟 Features
 
-- **Real-time F1 Data**: Access to current Formula One statistics and information
+- **Custom Formula Builder**: Create personalized supplements, skincare, and wellness products
+- **Ingredient Selection**: Choose from a wide range of high-quality ingredients
+- **Dosage Customization**: Set precise dosages for optimal health benefits
+- **Product Type Selection**: Multiple product forms including supplements, skincare, and personal care
 - **Modern UI**: Clean and responsive design built with modern CSS
 - **TypeScript**: Full type safety for better development experience
 - **Component-based Architecture**: Modular and reusable React components
@@ -21,22 +24,22 @@ A modern Formula One data dashboard built with Next.js, TypeScript, and modern w
 ## 📁 Project Structure
 
 ```
-fomula.one-/
-├── app/                 # Next.js app directory
-├── components/          # Reusable React components
-├── hooks/              # Custom React hooks
-├── lib/                # Utility functions and libraries
-├── public/             # Static assets
-├── styles/             # Global styles and CSS modules
-├── .gitignore          # Git ignore rules
-├── components.json     # Component configuration
-├── next.config.mjs     # Next.js configuration
-├── package.json        # Project dependencies
-├── pnpm-lock.yaml      # Package lock file
-└── postcss.config.mjs  # PostCSS configuration
+formula.one-/
+├── app/                    # Next.js app directory
+├── components/             # Reusable React components
+├── hooks/                  # Custom React hooks
+├── lib/                    # Utility functions and libraries
+├── public/                 # Static assets
+├── styles/                 # Global styles and CSS modules
+├── .gitignore             # Git ignore rules
+├── components.json        # Component configuration
+├── next.config.mjs        # Next.js configuration
+├── package.json           # Project dependencies
+├── pnpm-lock.yaml         # Package lock file
+└── postcss.config.mjs     # PostCSS configuration
 ```
 
-## 🚦 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -46,24 +49,27 @@ fomula.one-/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/Habib9612/fomula.one-.git
-cd fomula.one-
+cd formula.one-
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 pnpm dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## 🏗️ Available Scripts
+## 📋 Available Scripts
 
 - `pnpm dev` - Start the development server
 - `pnpm build` - Build the application for production
@@ -72,13 +78,13 @@ pnpm dev
 
 ## 🎯 Usage
 
-This dashboard provides comprehensive Formula One data including:
+This wellness platform provides comprehensive health product customization including:
 
-- Driver standings and statistics
-- Constructor championships
-- Race results and schedules
-- Historical F1 data
-- Interactive charts and visualizations
+- **Supplement Creation**: Design custom vitamin and mineral supplements
+- **Skincare Formulation**: Create personalized skincare products
+- **Wellness Products**: Develop custom wellness and personal care items
+- **Ingredient Management**: Select and combine ingredients for optimal health benefits
+- **Formula Optimization**: Fine-tune dosages and combinations for individual needs
 
 ## 🤝 Contributing
 
@@ -90,22 +96,12 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👨‍💻 Author
-
-**Habib9612**
-- GitHub: [@Habib9612](https://github.com/Habib9612)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- Formula One for providing the inspiration
-- Next.js team for the amazing framework
-- The open-source community for continuous support
-
----
-
-*Built with ❤️ for Formula One enthusiasts*        
-  
+- Built with modern web technologies for optimal performance
+- Designed with user experience and health customization in mind
+- Inspired by the need for personalized wellness solutions
